@@ -1,6 +1,5 @@
 package study;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,27 +24,37 @@ public class SetTest {
         numbers.add(3);
     }
 
-    @DisplayName("SET 사이즈 측정 테스트")
+    @DisplayName("Set 의 size() 메소드를 활용해 Set 의 크기를 확인한다.")
     @Test
-    void SET_사이즈_측정_테스트() {
+    void size() {
         // given
         int expected = 3;
 
-        // then
+        // when & then
         assertThat(numbers).hasSize(expected);
     }
 
-    @DisplayName("SET 값 존재 테스트")
+    @DisplayName("Set 의 contains() 메소드를 활용해 1, 2, 3의 값이 존재하는지를 확인한다.")
+    @Test
+    void contains() {
+        // when & then
+        assertThat(numbers.contains(1)).isTrue();
+        assertThat(numbers.contains(2)).isTrue();
+        assertThat(numbers.contains(3)).isTrue();
+    }
+
+    @DisplayName("ParameterizedTest 를 활용해 중복 코드를 제거해 본다.")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    void SET_값_존재_테스트(int expected) {
+    void parameterizedTest(int expected) {
+        // when & then
         assertThat(numbers.contains(expected)).isTrue();
     }
 
-    @DisplayName("SET 값 포함, 미포함 테스트")
+    @DisplayName("입력 값에 따라 결과 값이 다른 경우에 대한 테스트도 가능하도록 한다.")
     @ParameterizedTest
     @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
-    void SET_값_포함_미포함_테스트(int given, boolean expected) {
-        Assertions.assertThat(numbers.contains(given)).isEqualTo(expected);
+    void parameterizedTest(int input, boolean expected) {
+        assertThat(numbers.contains(input)).isEqualTo(expected);
     }
 }
