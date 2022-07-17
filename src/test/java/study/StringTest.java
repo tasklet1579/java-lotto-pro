@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class StringTest {
+class StringTest {
     @DisplayName("\"1,2\"을 ,로 split 했을 때 1과 2로 분리되는지 확인한다.")
     @Test
     void splitByComma() {
